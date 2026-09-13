@@ -10,13 +10,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: download repository
     - uses: actions/checkout@v3
 
-    - name: builders e up containers
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2     
     - run: docker-compose up -d --build
     
-    - name: run tests
+    - name: Testar aplicação
+      run: |
+        sleep 10
+        curl -f http://localhost:5000 | grep "Contador de Visitas"
     - run: | 
         sleep 10
         curl -f http://localhost:5000 | grep "Contador de Visitas"
