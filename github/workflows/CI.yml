@@ -20,5 +20,8 @@ jobs:
     - run: | 
         sleep 10
         curl -f http://localhost:5000 | grep "Contador de Visitas"
+        
+    - name: Encerrar containers
+      run: docker compose down
     
 
